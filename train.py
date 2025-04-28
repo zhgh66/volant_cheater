@@ -14,7 +14,6 @@ current_epoch = 0
 
 # 自定义：验证结束后打印并写入 TensorBoard
 def log_pr_after_val(validator):
-    """验证结束后记录指标的正确方式（最终修正版）"""
     global current_epoch
 
     try:
@@ -29,7 +28,7 @@ def log_pr_after_val(validator):
         f1 = 2 * precision * recall / (precision + recall + 1e-16)
 
         # 打印到控制台（显示正确epoch）
-        print(f"🛠 After Val - Epoch {current_epoch + 1}: P={precision:.4f}, R={recall:.4f}, F1={f1:.4f}")
+        print(f"After Val - Epoch {current_epoch + 1}: P={precision:.4f}, R={recall:.4f}, F1={f1:.4f}")
 
         # 写入 TensorBoard（使用正确epoch计数）
         writer.add_scalar("Val/P", precision, current_epoch + 1)
@@ -37,7 +36,7 @@ def log_pr_after_val(validator):
         writer.add_scalar("Val/F1", f1, current_epoch + 1)
 
     except Exception as e:
-        print(f"⚠️ 指标获取失败: {str(e)}")
+        print(f"指标获取失败: {str(e)}")
 
 # def log_test_metrics(model, data_yaml):
 #     """测试阶段输出并记录相关指标"""
@@ -53,7 +52,7 @@ def log_pr_after_val(validator):
 #         recall = metrics.get('metrics/recall(B)', 0)
 #         f1 = 2 * precision * recall / (precision + recall + 1e-16)
 #
-#         print(f"🛠 Test Metrics - P={precision:.4f}, R={recall:.4f}, F1={f1:.4f}")
+#         print(f"Test Metrics - P={precision:.4f}, R={recall:.4f}, F1={f1:.4f}")
 #
 #         # 写入 TensorBoard
 #         writer.add_scalar("Test/P", precision)
@@ -61,7 +60,7 @@ def log_pr_after_val(validator):
 #         writer.add_scalar("Test/F1", f1)
 #
 #     except Exception as e:
-#         print(f"⚠️ 测试指标获取失败: {str(e)}")
+#         print(f"测试指标获取失败: {str(e)}")
 
 def update_epoch_counter(trainer):
     """更新epoch计数器"""
@@ -136,7 +135,7 @@ def visualize_errors(model_path, data_yaml):
         conf=0.25,
         # iou_thres=0.3
     )
-    print("✅ 验证完成，错误图像已保存至 runs/detect/val/ 目录")
+    print("验证完成，错误图像已保存至 runs/detect/val/ 目录")
 
 
 # 启动训练和验证
