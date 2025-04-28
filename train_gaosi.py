@@ -71,7 +71,7 @@ def log_pr_after_val(validator):
         f1 = 2 * precision * recall / (precision + recall + 1e-16)
 
         # 打印到控制台（显示正确epoch）
-        print(f"🛠 After Val - Epoch {current_epoch + 1}: P={precision:.4f}, R={recall:.4f}, F1={f1:.4f}")
+        print(f"After Val - Epoch {current_epoch + 1}: P={precision:.4f}, R={recall:.4f}, F1={f1:.4f}")
 
         # 写入 TensorBoard（使用正确epoch计数）
         writer.add_scalar("Val/P", precision, current_epoch + 1)
@@ -79,7 +79,7 @@ def log_pr_after_val(validator):
         writer.add_scalar("Val/F1", f1, current_epoch + 1)
 
     except Exception as e:
-        print(f"⚠️ 指标获取失败: {str(e)}")
+        print(f"指标获取失败: {str(e)}")
 
 
 def update_epoch_counter(trainer):
@@ -154,7 +154,7 @@ def visualize_errors(model_path, data_yaml):
         save_crop=True,
         conf=0.25
     )
-    print("✅ 验证完成，错误图像已保存至 runs/detect/val/ 目录")
+    print("验证完成，错误图像已保存至 runs/detect/val/ 目录")
 
 
 # 启动训练和验证
